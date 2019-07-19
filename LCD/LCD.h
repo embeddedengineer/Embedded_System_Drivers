@@ -27,8 +27,8 @@
 
 extern void LcdCommand( unsigned char cmnd );
 extern void LcdData( unsigned char data );
-extern void Init_Lcd();
+extern void Init_Lcd(void);
 extern void LcdXY(unsigned char x, unsigned char y);
 extern void LcdPrint(char * str );
-
+extern void LcdClear(void);
 #endif /* _LCD_H_ */

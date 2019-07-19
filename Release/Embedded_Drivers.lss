@@ -3,21 +3,21 @@ Embedded_Drivers.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000026a  00000000  00000000  00000074  2**1
+  0 .text         000002ca  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000046  00800060  0000026a  000002de  2**0
+  1 .data         00000046  00800060  000002ca  0000033e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000011  00000000  00000000  00000324  2**0
+  2 .comment      00000011  00000000  00000000  00000384  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000338  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000398  2**2
                   CONTENTS, READONLY
-  4 .debug_info   000004e6  00000000  00000000  00000374  2**0
+  4 .debug_info   000004e6  00000000  00000000  000003d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 000004a3  00000000  00000000  0000085a  2**0
+  5 .debug_abbrev 000004a3  00000000  00000000  000008ba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000001a  00000000  00000000  00000cfd  2**0
+  6 .debug_line   0000001a  00000000  00000000  00000d5d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    00000196  00000000  00000000  00000d17  2**0
+  7 .debug_str    00000196  00000000  00000000  00000d77  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -57,7 +57,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ea e6       	ldi	r30, 0x6A	; 106
+  66:	ea ec       	ldi	r30, 0xCA	; 202
   68:	f2 e0       	ldi	r31, 0x02	; 2
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -65,8 +65,8 @@ Disassembly of section .text:
   70:	a6 3a       	cpi	r26, 0xA6	; 166
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
-  76:	0e 94 28 01 	call	0x250	; 0x250 <main>
-  7a:	0c 94 33 01 	jmp	0x266	; 0x266 <_exit>
+  76:	0e 94 32 01 	call	0x264	; 0x264 <main>
+  7a:	0c 94 63 01 	jmp	0x2c6	; 0x2c6 <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -283,49 +283,97 @@ Disassembly of section .text:
  216:	0f 91       	pop	r16
  218:	08 95       	ret
 
-0000021a <Init_7SEG>:
- 21a:	8f e0       	ldi	r24, 0x0F	; 15
- 21c:	87 bb       	out	0x17, r24	; 23
- 21e:	8c e3       	ldi	r24, 0x3C	; 60
- 220:	84 bb       	out	0x14, r24	; 20
- 222:	08 95       	ret
+0000021a <LcdClear>:
+ 21a:	81 e0       	ldi	r24, 0x01	; 1
+ 21c:	0e 94 7d 00 	call	0xfa	; 0xfa <LcdCommand>
+ 220:	8f e3       	ldi	r24, 0x3F	; 63
+ 222:	9f e1       	ldi	r25, 0x1F	; 31
+ 224:	01 97       	sbiw	r24, 0x01	; 1
+ 226:	f1 f7       	brne	.-4      	; 0x224 <LcdClear+0xa>
+ 228:	00 c0       	rjmp	.+0      	; 0x22a <LcdClear+0x10>
+ 22a:	00 00       	nop
+ 22c:	08 95       	ret
 
-00000224 <DrawNumber>:
- 224:	62 30       	cpi	r22, 0x02	; 2
- 226:	69 f0       	breq	.+26     	; 0x242 <DrawNumber+0x1e>
- 228:	20 f4       	brcc	.+8      	; 0x232 <DrawNumber+0xe>
- 22a:	61 30       	cpi	r22, 0x01	; 1
- 22c:	61 f4       	brne	.+24     	; 0x246 <DrawNumber+0x22>
- 22e:	9b ef       	ldi	r25, 0xFB	; 251
- 230:	09 c0       	rjmp	.+18     	; 0x244 <DrawNumber+0x20>
- 232:	63 30       	cpi	r22, 0x03	; 3
- 234:	21 f0       	breq	.+8      	; 0x23e <DrawNumber+0x1a>
- 236:	64 30       	cpi	r22, 0x04	; 4
- 238:	31 f4       	brne	.+12     	; 0x246 <DrawNumber+0x22>
- 23a:	9f ee       	ldi	r25, 0xEF	; 239
- 23c:	03 c0       	rjmp	.+6      	; 0x244 <DrawNumber+0x20>
- 23e:	9f ed       	ldi	r25, 0xDF	; 223
- 240:	01 c0       	rjmp	.+2      	; 0x244 <DrawNumber+0x20>
- 242:	97 ef       	ldi	r25, 0xF7	; 247
- 244:	95 bb       	out	0x15, r25	; 21
- 246:	98 b3       	in	r25, 0x18	; 24
- 248:	90 7f       	andi	r25, 0xF0	; 240
- 24a:	89 2b       	or	r24, r25
- 24c:	88 bb       	out	0x18, r24	; 24
- 24e:	08 95       	ret
+0000022e <Init_7SEG>:
+ 22e:	8f e0       	ldi	r24, 0x0F	; 15
+ 230:	87 bb       	out	0x17, r24	; 23
+ 232:	8c e3       	ldi	r24, 0x3C	; 60
+ 234:	84 bb       	out	0x14, r24	; 20
+ 236:	08 95       	ret
 
-00000250 <main>:
- 250:	0e 94 c7 00 	call	0x18e	; 0x18e <Init_Lcd>
- 254:	63 e0       	ldi	r22, 0x03	; 3
- 256:	81 e0       	ldi	r24, 0x01	; 1
- 258:	0e 94 df 00 	call	0x1be	; 0x1be <LcdXY>
- 25c:	88 e8       	ldi	r24, 0x88	; 136
- 25e:	90 e0       	ldi	r25, 0x00	; 0
- 260:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <LcdPrint>
- 264:	ff cf       	rjmp	.-2      	; 0x264 <main+0x14>
+00000238 <DrawNumber>:
+ 238:	62 30       	cpi	r22, 0x02	; 2
+ 23a:	69 f0       	breq	.+26     	; 0x256 <DrawNumber+0x1e>
+ 23c:	20 f4       	brcc	.+8      	; 0x246 <DrawNumber+0xe>
+ 23e:	61 30       	cpi	r22, 0x01	; 1
+ 240:	61 f4       	brne	.+24     	; 0x25a <DrawNumber+0x22>
+ 242:	9b ef       	ldi	r25, 0xFB	; 251
+ 244:	09 c0       	rjmp	.+18     	; 0x258 <DrawNumber+0x20>
+ 246:	63 30       	cpi	r22, 0x03	; 3
+ 248:	21 f0       	breq	.+8      	; 0x252 <DrawNumber+0x1a>
+ 24a:	64 30       	cpi	r22, 0x04	; 4
+ 24c:	31 f4       	brne	.+12     	; 0x25a <DrawNumber+0x22>
+ 24e:	9f ee       	ldi	r25, 0xEF	; 239
+ 250:	03 c0       	rjmp	.+6      	; 0x258 <DrawNumber+0x20>
+ 252:	9f ed       	ldi	r25, 0xDF	; 223
+ 254:	01 c0       	rjmp	.+2      	; 0x258 <DrawNumber+0x20>
+ 256:	97 ef       	ldi	r25, 0xF7	; 247
+ 258:	95 bb       	out	0x15, r25	; 21
+ 25a:	98 b3       	in	r25, 0x18	; 24
+ 25c:	90 7f       	andi	r25, 0xF0	; 240
+ 25e:	89 2b       	or	r24, r25
+ 260:	88 bb       	out	0x18, r24	; 24
+ 262:	08 95       	ret
 
-00000266 <_exit>:
- 266:	f8 94       	cli
+00000264 <main>:
+ 264:	cf 93       	push	r28
+ 266:	df 93       	push	r29
+ 268:	00 d0       	rcall	.+0      	; 0x26a <main+0x6>
+ 26a:	00 d0       	rcall	.+0      	; 0x26c <main+0x8>
+ 26c:	1f 92       	push	r1
+ 26e:	cd b7       	in	r28, 0x3d	; 61
+ 270:	de b7       	in	r29, 0x3e	; 62
+ 272:	85 e0       	ldi	r24, 0x05	; 5
+ 274:	e8 e8       	ldi	r30, 0x88	; 136
+ 276:	f0 e0       	ldi	r31, 0x00	; 0
+ 278:	de 01       	movw	r26, r28
+ 27a:	11 96       	adiw	r26, 0x01	; 1
+ 27c:	01 90       	ld	r0, Z+
+ 27e:	0d 92       	st	X+, r0
+ 280:	8a 95       	dec	r24
+ 282:	e1 f7       	brne	.-8      	; 0x27c <main+0x18>
+ 284:	0e 94 c7 00 	call	0x18e	; 0x18e <Init_Lcd>
+ 288:	10 e0       	ldi	r17, 0x00	; 0
+ 28a:	00 e0       	ldi	r16, 0x00	; 0
+ 28c:	ff 24       	eor	r15, r15
+ 28e:	f3 94       	inc	r15
+ 290:	0e 94 0d 01 	call	0x21a	; 0x21a <LcdClear>
+ 294:	61 2f       	mov	r22, r17
+ 296:	80 2f       	mov	r24, r16
+ 298:	0e 94 df 00 	call	0x1be	; 0x1be <LcdXY>
+ 29c:	ce 01       	movw	r24, r28
+ 29e:	01 96       	adiw	r24, 0x01	; 1
+ 2a0:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <LcdPrint>
+ 2a4:	1b 30       	cpi	r17, 0x0B	; 11
+ 2a6:	18 f4       	brcc	.+6      	; 0x2ae <main+0x4a>
+ 2a8:	1c 5f       	subi	r17, 0xFC	; 252
+ 2aa:	0f 25       	eor	r16, r15
+ 2ac:	02 c0       	rjmp	.+4      	; 0x2b2 <main+0x4e>
+ 2ae:	10 e0       	ldi	r17, 0x00	; 0
+ 2b0:	00 e0       	ldi	r16, 0x00	; 0
+ 2b2:	2f ef       	ldi	r18, 0xFF	; 255
+ 2b4:	83 ed       	ldi	r24, 0xD3	; 211
+ 2b6:	90 e3       	ldi	r25, 0x30	; 48
+ 2b8:	21 50       	subi	r18, 0x01	; 1
+ 2ba:	80 40       	sbci	r24, 0x00	; 0
+ 2bc:	90 40       	sbci	r25, 0x00	; 0
+ 2be:	e1 f7       	brne	.-8      	; 0x2b8 <main+0x54>
+ 2c0:	00 c0       	rjmp	.+0      	; 0x2c2 <main+0x5e>
+ 2c2:	00 00       	nop
+ 2c4:	e5 cf       	rjmp	.-54     	; 0x290 <main+0x2c>
 
-00000268 <__stop_program>:
- 268:	ff cf       	rjmp	.-2      	; 0x268 <__stop_program>
+000002c6 <_exit>:
+ 2c6:	f8 94       	cli
+
+000002c8 <__stop_program>:
+ 2c8:	ff cf       	rjmp	.-2      	; 0x2c8 <__stop_program>

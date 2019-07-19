@@ -128,7 +128,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x26a
+.text           0x0000000000000000      0x2ca
  *(.vectors)
  .vectors       0x0000000000000000       0x54 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
                 0x0000000000000000                __vectors
@@ -233,46 +233,49 @@ END GROUP
  .text.LcdPrint
                 0x00000000000001f4       0x26 ./LCD/LCD.o
                 0x00000000000001f4                LcdPrint
+ .text.LcdClear
+                0x000000000000021a       0x14 ./LCD/LCD.o
+                0x000000000000021a                LcdClear
  .text.Init_7SEG
-                0x000000000000021a        0xa ./7SEGMENT/7SEGMENT.o
-                0x000000000000021a                Init_7SEG
+                0x000000000000022e        0xa ./7SEGMENT/7SEGMENT.o
+                0x000000000000022e                Init_7SEG
  .text.DrawNumber
-                0x0000000000000224       0x2c ./7SEGMENT/7SEGMENT.o
-                0x0000000000000224                DrawNumber
+                0x0000000000000238       0x2c ./7SEGMENT/7SEGMENT.o
+                0x0000000000000238                DrawNumber
  .text.startup.main
-                0x0000000000000250       0x16 ./main.o
-                0x0000000000000250                main
+                0x0000000000000264       0x62 ./main.o
+                0x0000000000000264                main
  .text.libgcc.mul
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
-                0x0000000000000266                . = ALIGN (0x2)
+                0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x00000000000002c6                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
-                0x0000000000000266                exit
-                0x0000000000000266                _exit
+ .fini9         0x00000000000002c6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x00000000000002c6                exit
+                0x00000000000002c6                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -291,11 +294,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000266        0x4 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000000000002c6        0x4 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x000000000000026a                _etext = .
+                0x00000000000002ca                _etext = .
 
-.data           0x0000000000800060       0x46 load address 0x000000000000026a
+.data           0x0000000000800060       0x46 load address 0x00000000000002ca
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
@@ -315,33 +318,34 @@ END GROUP
                 0x0000000000800080        0x8 ./LED_MATRIX/MATRIX.o
                 0x0000000000800080                ColsValue
  .rodata.str1.1
-                0x0000000000800088        0x6 ./main.o
- .rodata.PIND   0x000000000080008e        0x2 ./main.o
-                0x000000000080008e                PIND
- .rodata.PORTD  0x0000000000800090        0x2 ./main.o
-                0x0000000000800090                PORTD
- .rodata.DDRD   0x0000000000800092        0x2 ./main.o
-                0x0000000000800092                DDRD
- .rodata.PINC   0x0000000000800094        0x2 ./main.o
-                0x0000000000800094                PINC
- .rodata.PORTC  0x0000000000800096        0x2 ./main.o
-                0x0000000000800096                PORTC
- .rodata.DDRC   0x0000000000800098        0x2 ./main.o
-                0x0000000000800098                DDRC
- .rodata.PINB   0x000000000080009a        0x2 ./main.o
-                0x000000000080009a                PINB
- .rodata.PORTB  0x000000000080009c        0x2 ./main.o
-                0x000000000080009c                PORTB
- .rodata.DDRB   0x000000000080009e        0x2 ./main.o
-                0x000000000080009e                DDRB
- .rodata.PINA   0x00000000008000a0        0x2 ./main.o
-                0x00000000008000a0                PINA
- .rodata.PORTA  0x00000000008000a2        0x2 ./main.o
-                0x00000000008000a2                PORTA
- .rodata.DDRA   0x00000000008000a4        0x2 ./main.o
-                0x00000000008000a4                DDRA
+                0x0000000000800088        0x5 ./main.o
+ .rodata.PIND   0x000000000080008d        0x2 ./main.o
+                0x000000000080008d                PIND
+ .rodata.PORTD  0x000000000080008f        0x2 ./main.o
+                0x000000000080008f                PORTD
+ .rodata.DDRD   0x0000000000800091        0x2 ./main.o
+                0x0000000000800091                DDRD
+ .rodata.PINC   0x0000000000800093        0x2 ./main.o
+                0x0000000000800093                PINC
+ .rodata.PORTC  0x0000000000800095        0x2 ./main.o
+                0x0000000000800095                PORTC
+ .rodata.DDRC   0x0000000000800097        0x2 ./main.o
+                0x0000000000800097                DDRC
+ .rodata.PINB   0x0000000000800099        0x2 ./main.o
+                0x0000000000800099                PINB
+ .rodata.PORTB  0x000000000080009b        0x2 ./main.o
+                0x000000000080009b                PORTB
+ .rodata.DDRB   0x000000000080009d        0x2 ./main.o
+                0x000000000080009d                DDRB
+ .rodata.PINA   0x000000000080009f        0x2 ./main.o
+                0x000000000080009f                PINA
+ .rodata.PORTA  0x00000000008000a1        0x2 ./main.o
+                0x00000000008000a1                PORTA
+ .rodata.DDRA   0x00000000008000a3        0x2 ./main.o
+                0x00000000008000a3                DDRA
  *(.gnu.linkonce.d*)
                 0x00000000008000a6                . = ALIGN (0x2)
+ *fill*         0x00000000008000a5        0x1 
                 0x00000000008000a6                _edata = .
                 0x00000000008000a6                PROVIDE (__data_end, .)
 
@@ -358,8 +362,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x000000000000026a                __data_load_start = LOADADDR (.data)
-                0x00000000000002b0                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000000000002ca                __data_load_start = LOADADDR (.data)
+                0x0000000000000310                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008000a6        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)

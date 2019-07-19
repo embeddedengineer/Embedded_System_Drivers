@@ -57,3 +57,8 @@ void LcdPrint(char * str ) {
 	unsigned char i = 0;
 	while(str[i] != 0) LcdData(str[i++]);
 }
+
+void LcdClear(void){
+	LcdCommand(CLEAR_SCREEN);
+	_delay_us(2000);
+}
