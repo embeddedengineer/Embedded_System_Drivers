@@ -1,8 +1,10 @@
 main.o: ../main.c ../GPIO/GPIO.h ../LED_MATRIX/MATRIX.h \
- ../7SEGMENT/7SEGMENT.h
+ ../7SEGMENT/7SEGMENT.h ../LCD/LCD.h
 
 ../GPIO/GPIO.h:
 
 ../LED_MATRIX/MATRIX.h:
 
 ../7SEGMENT/7SEGMENT.h:
+
+../LCD/LCD.h:

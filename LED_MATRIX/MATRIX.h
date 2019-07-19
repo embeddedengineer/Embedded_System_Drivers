@@ -17,5 +17,6 @@
 #define ROW_DDR  DDRD
 
 extern void DrawString(unsigned char *String);
+extern void Init_LedMatrix(void);
 
 #endif /* LED_MATRIX_H_ */

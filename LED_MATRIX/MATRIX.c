@@ -22,10 +22,12 @@ const unsigned char CharSet[][8] = {
 		{ 0xff, 0xe3, 0xdd, 0x3e, 0x3e, 0xdd, 0xe3, 0xff},
 };
 
+void Init_LedMatrix(void) {
+	ROW_DDR = 0xff;
+	COL_DDR = 0xff;
+}
 
 void DrawString(unsigned char *String){
-	ROW_PORT = 0xff;
-	COL_PORT = 0xff;
 	const unsigned char * volatile ptrChar;
 	unsigned char RefreshRate = 0;
 	unsigned char Values = 0;

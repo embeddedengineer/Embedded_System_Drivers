@@ -21,6 +21,7 @@ Linker script and memory map
 
 LOAD /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
 LOAD ./LED_MATRIX/MATRIX.o
+LOAD ./LCD/LCD.o
 LOAD ./7SEGMENT/7SEGMENT.o
 LOAD ./main.o
 START GROUP
@@ -127,7 +128,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x166
+.text           0x0000000000000000      0x26a
  *(.vectors)
  .vectors       0x0000000000000000       0x54 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
                 0x0000000000000000                __vectors
@@ -206,55 +207,72 @@ END GROUP
                 0x000000000000007e                __vector_18
                 0x000000000000007e                __vector_20
  .text          0x0000000000000082        0x0 ./LED_MATRIX/MATRIX.o
+ .text          0x0000000000000082        0x0 ./LCD/LCD.o
  .text          0x0000000000000082        0x0 ./7SEGMENT/7SEGMENT.o
  .text          0x0000000000000082        0x0 ./main.o
  .text          0x0000000000000082        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text          0x0000000000000082        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
                 0x0000000000000082                . = ALIGN (0x2)
  *(.text.*)
+ .text.Init_LedMatrix
+                0x0000000000000082        0x8 ./LED_MATRIX/MATRIX.o
+                0x0000000000000082                Init_LedMatrix
  .text.DrawString
-                0x0000000000000082       0x76 ./LED_MATRIX/MATRIX.o
-                0x0000000000000082                DrawString
+                0x000000000000008a       0x70 ./LED_MATRIX/MATRIX.o
+                0x000000000000008a                DrawString
+ .text.LcdCommand
+                0x00000000000000fa       0x50 ./LCD/LCD.o
+                0x00000000000000fa                LcdCommand
+ .text.LcdData  0x000000000000014a       0x44 ./LCD/LCD.o
+                0x000000000000014a                LcdData
+ .text.Init_Lcd
+                0x000000000000018e       0x30 ./LCD/LCD.o
+                0x000000000000018e                Init_Lcd
+ .text.LcdXY    0x00000000000001be       0x36 ./LCD/LCD.o
+                0x00000000000001be                LcdXY
+ .text.LcdPrint
+                0x00000000000001f4       0x26 ./LCD/LCD.o
+                0x00000000000001f4                LcdPrint
  .text.Init_7SEG
-                0x00000000000000f8        0xa ./7SEGMENT/7SEGMENT.o
-                0x00000000000000f8                Init_7SEG
+                0x000000000000021a        0xa ./7SEGMENT/7SEGMENT.o
+                0x000000000000021a                Init_7SEG
  .text.DrawNumber
-                0x0000000000000102       0x2c ./7SEGMENT/7SEGMENT.o
-                0x0000000000000102                DrawNumber
+                0x0000000000000224       0x2c ./7SEGMENT/7SEGMENT.o
+                0x0000000000000224                DrawNumber
  .text.startup.main
-                0x000000000000012e       0x34 ./main.o
-                0x000000000000012e                main
+                0x0000000000000250       0x16 ./main.o
+                0x0000000000000250                main
  .text.libgcc.mul
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
-                0x0000000000000162                . = ALIGN (0x2)
+                0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+                0x0000000000000266                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000162        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
-                0x0000000000000162                exit
-                0x0000000000000162                _exit
+ .fini9         0x0000000000000266        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+                0x0000000000000266                exit
+                0x0000000000000266                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -273,15 +291,16 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000162        0x4 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x0000000000000266        0x4 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000000166                _etext = .
+                0x000000000000026a                _etext = .
 
-.data           0x0000000000800060       0x40 load address 0x0000000000000166
+.data           0x0000000000800060       0x46 load address 0x000000000000026a
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
  .data          0x0000000000800060        0x0 ./LED_MATRIX/MATRIX.o
+ .data          0x0000000000800060        0x0 ./LCD/LCD.o
  .data          0x0000000000800060        0x0 ./7SEGMENT/7SEGMENT.o
  .data          0x0000000000800060        0x0 ./main.o
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
@@ -295,55 +314,58 @@ END GROUP
  .rodata.ColsValue
                 0x0000000000800080        0x8 ./LED_MATRIX/MATRIX.o
                 0x0000000000800080                ColsValue
- .rodata.PIND   0x0000000000800088        0x2 ./main.o
-                0x0000000000800088                PIND
- .rodata.PORTD  0x000000000080008a        0x2 ./main.o
-                0x000000000080008a                PORTD
- .rodata.DDRD   0x000000000080008c        0x2 ./main.o
-                0x000000000080008c                DDRD
- .rodata.PINC   0x000000000080008e        0x2 ./main.o
-                0x000000000080008e                PINC
- .rodata.PORTC  0x0000000000800090        0x2 ./main.o
-                0x0000000000800090                PORTC
- .rodata.DDRC   0x0000000000800092        0x2 ./main.o
-                0x0000000000800092                DDRC
- .rodata.PINB   0x0000000000800094        0x2 ./main.o
-                0x0000000000800094                PINB
- .rodata.PORTB  0x0000000000800096        0x2 ./main.o
-                0x0000000000800096                PORTB
- .rodata.DDRB   0x0000000000800098        0x2 ./main.o
-                0x0000000000800098                DDRB
- .rodata.PINA   0x000000000080009a        0x2 ./main.o
-                0x000000000080009a                PINA
- .rodata.PORTA  0x000000000080009c        0x2 ./main.o
-                0x000000000080009c                PORTA
- .rodata.DDRA   0x000000000080009e        0x2 ./main.o
-                0x000000000080009e                DDRA
+ .rodata.str1.1
+                0x0000000000800088        0x6 ./main.o
+ .rodata.PIND   0x000000000080008e        0x2 ./main.o
+                0x000000000080008e                PIND
+ .rodata.PORTD  0x0000000000800090        0x2 ./main.o
+                0x0000000000800090                PORTD
+ .rodata.DDRD   0x0000000000800092        0x2 ./main.o
+                0x0000000000800092                DDRD
+ .rodata.PINC   0x0000000000800094        0x2 ./main.o
+                0x0000000000800094                PINC
+ .rodata.PORTC  0x0000000000800096        0x2 ./main.o
+                0x0000000000800096                PORTC
+ .rodata.DDRC   0x0000000000800098        0x2 ./main.o
+                0x0000000000800098                DDRC
+ .rodata.PINB   0x000000000080009a        0x2 ./main.o
+                0x000000000080009a                PINB
+ .rodata.PORTB  0x000000000080009c        0x2 ./main.o
+                0x000000000080009c                PORTB
+ .rodata.DDRB   0x000000000080009e        0x2 ./main.o
+                0x000000000080009e                DDRB
+ .rodata.PINA   0x00000000008000a0        0x2 ./main.o
+                0x00000000008000a0                PINA
+ .rodata.PORTA  0x00000000008000a2        0x2 ./main.o
+                0x00000000008000a2                PORTA
+ .rodata.DDRA   0x00000000008000a4        0x2 ./main.o
+                0x00000000008000a4                DDRA
  *(.gnu.linkonce.d*)
-                0x00000000008000a0                . = ALIGN (0x2)
-                0x00000000008000a0                _edata = .
-                0x00000000008000a0                PROVIDE (__data_end, .)
+                0x00000000008000a6                . = ALIGN (0x2)
+                0x00000000008000a6                _edata = .
+                0x00000000008000a6                PROVIDE (__data_end, .)
 
-.bss            0x00000000008000a0        0x0
+.bss            0x00000000008000a6        0x0
                 [!provide]                        PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00000000008000a0        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
- .bss           0x00000000008000a0        0x0 ./LED_MATRIX/MATRIX.o
- .bss           0x00000000008000a0        0x0 ./7SEGMENT/7SEGMENT.o
- .bss           0x00000000008000a0        0x0 ./main.o
- .bss           0x00000000008000a0        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
- .bss           0x00000000008000a0        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
+ .bss           0x00000000008000a6        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr5/crtatmega32.o
+ .bss           0x00000000008000a6        0x0 ./LED_MATRIX/MATRIX.o
+ .bss           0x00000000008000a6        0x0 ./LCD/LCD.o
+ .bss           0x00000000008000a6        0x0 ./7SEGMENT/7SEGMENT.o
+ .bss           0x00000000008000a6        0x0 ./main.o
+ .bss           0x00000000008000a6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_exit.o)
+ .bss           0x00000000008000a6        0x0 /usr/lib/gcc/avr/5.4.0/avr5/libgcc.a(_copy_data.o)
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x0000000000000166                __data_load_start = LOADADDR (.data)
-                0x00000000000001a6                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000000000026a                __data_load_start = LOADADDR (.data)
+                0x00000000000002b0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00000000008000a0        0x0
+.noinit         0x00000000008000a6        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x00000000008000a0                _end = .
+                0x00000000008000a6                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
@@ -387,6 +409,7 @@ END GROUP
  *(.comment)
  .comment       0x0000000000000000       0x11 ./LED_MATRIX/MATRIX.o
                                          0x12 (size before relaxing)
+ .comment       0x0000000000000011       0x12 ./LCD/LCD.o
  .comment       0x0000000000000011       0x12 ./7SEGMENT/7SEGMENT.o
  .comment       0x0000000000000011       0x12 ./main.o
 
