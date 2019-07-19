@@ -1,5 +1,8 @@
-main.o: ../main.c ../GPIO/GPIO.h ../LED_MATRIX/MATRIX.h
+main.o: ../main.c ../GPIO/GPIO.h ../LED_MATRIX/MATRIX.h \
+ ../7SEGMENT/7SEGMENT.h
 
 ../GPIO/GPIO.h:
 
 ../LED_MATRIX/MATRIX.h:
+
+../7SEGMENT/7SEGMENT.h:

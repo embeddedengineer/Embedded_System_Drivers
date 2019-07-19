@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include LED_MATRIX/subdir.mk
+-include 7SEGMENT/subdir.mk
 -include subdir.mk
 -include objects.mk
 
