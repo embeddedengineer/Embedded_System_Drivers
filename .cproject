@@ -125,9 +125,9 @@
                     					
                     <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
                     					
-                    <extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-                    					
                     <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
                     				
                 </extensions>
                 			
@@ -139,7 +139,7 @@
                     					
                     <folderInfo id="de.innot.avreclipse.configuration.app.release.1562966350." name="/" resourcePath="">
                         						
-                        <toolChain id="de.innot.avreclipse.toolchain.winavr.app.release.791200678" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.app.release">
+                        <toolChain id="de.innot.avreclipse.toolchain.winavr.app.release.791200678" name="AVR-GCC Toolchain" nonInternalBuilderId="de.innot.avreclipse.target.builder.winavr.app.release" superClass="de.innot.avreclipse.toolchain.winavr.app.release">
                             							
                             <option id="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash.app.release.1277651905" name="Generate HEX file for Flash memory" superClass="de.innot.avreclipse.toolchain.options.toolchain.objcopy.flash.app.release"/>
                             							
@@ -153,7 +153,7 @@
                             							
                             <targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.release.819325403" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.release"/>
                             							
-                            <builder buildPath="${workspace_loc:/Embedded_Drivers}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.536598696" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
+                            <builder buildPath="${workspace_loc:/Embedded_Drivers}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.808607051" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
                             							
                             <tool id="de.innot.avreclipse.tool.assembler.winavr.app.release.1814581966" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.release">
                                 								
@@ -229,7 +229,21 @@
     	
     <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
     	
-    <storageModule moduleId="refreshScope"/>
+    <storageModule moduleId="refreshScope" versionNumber="2">
+        		
+        <configuration configurationName="Debug">
+            			
+            <resource resourceType="PROJECT" workspacePath="/Embedded_Drivers"/>
+            		
+        </configuration>
+        		
+        <configuration configurationName="Release">
+            			
+            <resource resourceType="PROJECT" workspacePath="/Embedded_Drivers"/>
+            		
+        </configuration>
+        	
+    </storageModule>
     	
     <storageModule moduleId="scannerConfiguration">
         		
@@ -248,5 +262,9 @@
         </scannerConfigBuildInfo>
         	
     </storageModule>
+    	
+    <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+    	
+    <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
     
 </cproject>
