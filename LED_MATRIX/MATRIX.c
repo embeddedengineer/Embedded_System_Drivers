@@ -6,7 +6,7 @@
  */
 
 #include "MATRIX.h"
-#include <avr/io.h>
+#include "../REGISTERS.h"
 #include <util/delay.h>
 
 const unsigned char ColsValue[8] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};

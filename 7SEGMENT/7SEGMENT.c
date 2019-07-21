@@ -6,16 +6,16 @@
  */
 
 #include "7SEGMENT.h"
-#include <avr/io.h>
+#include "../REGISTERS.h"
 #include <util/delay.h>
 
+void SEG_Init(void){
 
-void Init_7SEG(void){
-	BCD_DDR      = 0b00001111;
+	BCD_DDR		 = 0b00001111;
 	_7SEG_EN_DDR = 0b00111100;
 }
 
-void DrawNumber(unsigned char number, unsigned char DisplayNum){
+void SEG_Print(unsigned char number, unsigned char DisplayNum){
 	switch (DisplayNum) {
 		//    				  76543210
 		case 4: _7SEG_EN = ~0b00010000; break;

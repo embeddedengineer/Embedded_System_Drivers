@@ -10,11 +10,11 @@
 #define LED_MATRIX_H_
 
 
-#define COL_PORT PORTC
-#define ROW_PORT PORTD
+#define COL_PORT PORTC->PORT
+#define ROW_PORT PORTD->PORT
 
-#define COL_DDR  DDRC
-#define ROW_DDR  DDRD
+#define COL_DDR  DDRC->DDR
+#define ROW_DDR  DDRD->DDR
 
 extern void DrawString(unsigned char *String);
 extern void Init_LedMatrix(void);
