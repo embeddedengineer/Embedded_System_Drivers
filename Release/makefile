@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include LED_MATRIX/subdir.mk
 -include LCD/subdir.mk
+-include KEYPAD/subdir.mk
 -include 7SEGMENT/subdir.mk
 -include subdir.mk
 -include objects.mk

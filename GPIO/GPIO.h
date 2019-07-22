@@ -8,13 +8,14 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 
+#include "../REGISTERS.h"
+
 #define INPUT  0
 #define OUTPUT 1
 
 #define HIGH   1
 #define LOW    0
 
-#include "../REGISTERS.h"
 
 // Generic macros to be used with all register.
 #define PinMode(DDR, PinName, In_Out) DDR->PinName = In_Out

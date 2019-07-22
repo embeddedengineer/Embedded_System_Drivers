@@ -9,17 +9,23 @@
 #include "LED_MATRIX/MATRIX.h"
 #include "7SEGMENT/7SEGMENT.h"
 #include "LCD/LCD.h"
+#include "KEYPAD/KEYPAD.h"
 #include <util/delay.h>
 
 
 int main(void) {
 	LCD_Init();
-	unsigned char x;
+	KEYPAD_Init();
+	unsigned char keypressed = 0;
 	while(1){
-		for(x=0;x<256;x++) {
-			LCD_WriteINT(x);
-			_delay_ms(650);
-			LCD_Clear();
+		keypressed  = KEYPAD_PressedKey();
+		switch (keypressed) {
+			case 0: break;
+			default:
+				LCD_XY(0,0);
+				LCD_WriteINT(keypressed);
+				keypressed = 0;
+				break;
 		}
 	}
 
