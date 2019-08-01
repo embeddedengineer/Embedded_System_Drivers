@@ -209,4 +209,76 @@ static volatile _PIND * const PIND = (volatile _PIND *)0x30;
 //---------------------------------- END ------------------------------------------------
 
 
+//---------------------------------- SREG Register -----------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char C : 1;
+		unsigned char Z : 1;
+		unsigned char N : 1;
+		unsigned char V : 1;
+		unsigned char S : 1;
+		unsigned char H : 1;
+		unsigned char T : 1;
+		unsigned char I : 1;
+	};
+}_SREG;
+
+static volatile _SREG * const SREG = (volatile _SREG *)0x5F;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- MCUCR Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char ISC00 : 1;
+		unsigned char ISC01 : 1;
+		unsigned char ISC10 : 1;
+		unsigned char ISC11 : 1;
+	};
+}_MCUCR;
+
+static volatile _MCUCR * const MCUCR = (volatile _MCUCR *)0x55;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- MCUCSR Register ------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char : 6;
+		unsigned char ISC2 : 1;
+	};
+}_MCUCSR;
+
+static volatile _MCUCSR * const MCUCSR = (volatile _MCUCSR *)0x54;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- GICR Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char : 5;
+		unsigned char INT2 : 1;
+		unsigned char INT0 : 1;
+		unsigned char INT1 : 1;
+	};
+}_GICR;
+
+static volatile _GICR * const GICR = (volatile _GICR *)0x5B;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- GIFR Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char : 5;
+		unsigned char INTF2 : 1;
+		unsigned char INTF0 : 1;
+		unsigned char INTF1 : 1;
+	};
+}_GIFR;
+
+static volatile _GIFR * const GIFR = (volatile _GIFR *)0x5A;
+//---------------------------------- END ------------------------------------------------
+
 #endif /* REGISTERS_H_ */

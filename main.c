@@ -11,22 +11,37 @@
 #include "LCD/LCD.h"
 #include "KEYPAD/KEYPAD.h"
 #include <util/delay.h>
+#include "REGISTERS.h"
+#include "INTERRUPTS.h"
 
+
+
+ISR(INT0_vect){
+//	DigitalWrite(PORTD,PD5,HIGH);
+//	_delay_ms(1000);
+//	DigitalWrite(PORTD,PD5,LOW);
+}
 
 int main(void) {
+	int i;
 	LCD_Init();
-	KEYPAD_Init();
-	unsigned char keypressed = 0;
+	PinMode(DDRD,PD2,INPUT);
+	PinMode(DDRD,PD5,OUTPUT);
+	// 1 - Rising edge trigger.
+	MCUCR->ISC00 = 1;
+	MCUCR->ISC01 = 1;
+	GICR->INT0   = 1;   // 2- Enable INT0.
+	sei();		// 3- Enable global interrupts.
+
 	while(1){
-		keypressed  = KEYPAD_PressedKey();
-		switch (keypressed) {
-			case 0: break;
-			default:
-				LCD_XY(0,0);
-				LCD_WriteINT(keypressed);
-				keypressed = 0;
-				break;
+		for(i=0;i<25;i++) {
+			LCD_Clear();
+			LCD_WriteINT(i);
+			_delay_ms(800);
 		}
+		DigitalWrite(PORTD,PD5,HIGH);
+		_delay_ms(1000);
+		DigitalWrite(PORTD,PD5,LOW);
 	}
 
 	return 1;

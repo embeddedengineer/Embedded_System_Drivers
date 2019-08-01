@@ -1,6 +1,6 @@
 main.o: ../main.c ../GPIO/GPIO.h ../GPIO/../REGISTERS.h \
  ../LED_MATRIX/MATRIX.h ../7SEGMENT/7SEGMENT.h ../LCD/LCD.h \
- ../KEYPAD/KEYPAD.h
+ ../KEYPAD/KEYPAD.h ../REGISTERS.h ../INTERRUPTS.h
 
 ../GPIO/GPIO.h:
 
@@ -13,3 +13,7 @@ main.o: ../main.c ../GPIO/GPIO.h ../GPIO/../REGISTERS.h \
 ../LCD/LCD.h:
 
 ../KEYPAD/KEYPAD.h:
+
+../REGISTERS.h:
+
+../INTERRUPTS.h:
