@@ -153,7 +153,7 @@
                             							
                             <targetPlatform id="de.innot.avreclipse.targetplatform.winavr.app.release.819325403" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.app.release"/>
                             							
-                            <builder buildPath="${workspace_loc:/Embedded_Drivers}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.808607051" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
+                            <builder buildPath="${workspace_loc:/Embedded_Drivers}/Release" id="de.innot.avreclipse.target.builder.winavr.app.release.808607051" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.app.release"/>
                             							
                             <tool id="de.innot.avreclipse.tool.assembler.winavr.app.release.1814581966" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.release">
                                 								

@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TIMER0/subdir.mk
 -include LED_MATRIX/subdir.mk
 -include LCD/subdir.mk
 -include KEYPAD/subdir.mk

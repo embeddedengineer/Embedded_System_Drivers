@@ -25,5 +25,6 @@ SUBDIRS := \
 KEYPAD \
 LCD \
 LED_MATRIX \
+TIMER0 \
 . \
 

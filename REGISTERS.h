@@ -281,4 +281,74 @@ typedef union {
 static volatile _GIFR * const GIFR = (volatile _GIFR *)0x5A;
 //---------------------------------- END ------------------------------------------------
 
+//---------------------------------- TCCR0 Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char CS00  : 1;
+		unsigned char CS01  : 1;
+		unsigned char CS02  : 1;
+		unsigned char WGM01 : 1;
+		unsigned char COM00 : 1;
+		unsigned char COM01 : 1;
+		unsigned char WGM00 : 1;
+		unsigned char FOC0  : 1;
+	};
+}_TCCR0;
+
+static volatile _TCCR0 * const TCCR0 = (volatile _TCCR0 *)0x53;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- TCNT0 Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char b0  : 1;
+		unsigned char b1  : 1;
+		unsigned char b2  : 1;
+		unsigned char b3 : 1;
+		unsigned char b4 : 1;
+		unsigned char b5 : 1;
+		unsigned char b6 : 1;
+		unsigned char b7  : 1;
+	};
+}_TCNT0;
+static volatile _TCNT0 * const TCNT0 = (volatile _TCNT0 *)0x52;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- TIMSK Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char TOIE0  : 1;
+		unsigned char OCIE0  : 1;
+		unsigned char TOIE1  : 1;
+		unsigned char OCIE1B : 1;
+		unsigned char OCIE1A : 1;
+		unsigned char TICIE1 : 1;
+		unsigned char TOIE2  : 1;
+		unsigned char OCIE2  : 1;
+	};
+}_TIMSK;
+
+static volatile _TIMSK * const TIMSK = (volatile _TIMSK *)0x59;
+//---------------------------------- END ------------------------------------------------
+
+//---------------------------------- OCR0 Register -------------------------------------
+typedef union {
+	unsigned char value;
+	struct {
+		unsigned char b0  : 1;
+		unsigned char b1  : 1;
+		unsigned char b2  : 1;
+		unsigned char b3 : 1;
+		unsigned char b4 : 1;
+		unsigned char b5 : 1;
+		unsigned char b6 : 1;
+		unsigned char b7  : 1;
+	};
+}_OCR0;
+static volatile _OCR0 * const OCR0 = (volatile _OCR0 *)0x5C;
+//---------------------------------- END ------------------------------------------------
+
 #endif /* REGISTERS_H_ */

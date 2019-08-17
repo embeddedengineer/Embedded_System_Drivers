@@ -35,7 +35,6 @@
 #ifndef _AVR_INTERRUPT_H_
 #define _AVR_INTERRUPT_H_
 
-
 #if !defined(__DOXYGEN__) && !defined(__STRINGIFY)
 /* Auxiliary macro for ISR_ALIAS(). */
 #define __STRINGIFY(x) #x
@@ -341,3 +340,4 @@
 /* \@} */
 
 #endif
+

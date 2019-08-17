@@ -44,6 +44,7 @@ Embedded_Drivers.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
 	avr-gcc -Wl,-Map,Embedded_Drivers.map -mmcu=atmega32 -o "Embedded_Drivers.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	-avr-objdump -D Embedded_Drivers.elf > Embedded_Drivers_disassembly.txt
 	@echo 'Finished building target: $@'
 	@echo ' '
 
