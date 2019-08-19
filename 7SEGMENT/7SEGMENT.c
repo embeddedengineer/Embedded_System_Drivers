@@ -6,7 +6,7 @@
  */
 
 #include "7SEGMENT.h"
-#include "../REGISTERS.h"
+#include "avr/io.h"
 #include <util/delay.h>
 
 void SEG_Init(void){

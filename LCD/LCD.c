@@ -6,40 +6,40 @@
  */
 
 #include "LCD.h"
-#include "../REGISTERS.h"
+#include "avr/io.h"
 #include <util/delay.h>
 #include <stdio.h>
 
 void LCD_Command( unsigned char cmnd ) {
 	WRITE_H_NIBBLE(LCD_DPRT, cmnd);
-	LCD_RS = 0;
-	LCD_EN = 1;
+	LCD_CPRT &= ~(1<<LCD_RS);
+	LCD_CPRT |=  (1<<LCD_EN);
 	_delay_us(1);
-	LCD_EN = 0;
+	LCD_CPRT &= ~(1<<LCD_EN);
 	_delay_us(100);
 	WRITE_L_NIBBLE(LCD_DPRT, cmnd);
-	LCD_EN = 1;
+	LCD_CPRT |=  (1<<LCD_EN);
 	_delay_us(1);
-	LCD_EN = 0;
+	LCD_CPRT &= ~(1<<LCD_EN);
 	_delay_us(100);
 }
 
 void LCD_Data( unsigned char data ) {
 	WRITE_H_NIBBLE(LCD_DPRT, data);
-	LCD_RS = 1;
-	LCD_EN = 1;
+	LCD_CPRT |=  (1<<LCD_RS);
+	LCD_CPRT |=  (1<<LCD_EN);
 	_delay_us(1);
-	LCD_EN = 0;
+	LCD_CPRT &= ~(1<<LCD_EN);
 	WRITE_L_NIBBLE(LCD_DPRT, data);
-	LCD_EN = 1;
+	LCD_CPRT |=  (1<<LCD_EN);
 	_delay_us(1);
-	LCD_EN = 0;
+	LCD_CPRT &= ~(1<<LCD_EN);
 	_delay_us(100);
 }
 
 void LCD_Init() {
 	LCD_DDDR = 0xF0;
-	LCD_CDDR |= (1<<6) | (1<<7);
+	LCD_CDDR |= (1<<LCD_RS) | (1<<LCD_EN);
 	LCD_CPRT &= ~(1<<LCD_EN);
 	LCD_Command(_4BITS_2LINES);
 	LCD_Command(DISPLAY_ON_CURSOR_OFF);

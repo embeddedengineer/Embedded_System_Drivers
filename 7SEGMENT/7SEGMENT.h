@@ -8,11 +8,11 @@
 #ifndef _7SEGMENT_H_
 #define _7SEGMENT_H_
 
-#define BCD_DATA PORTB->PORT
-#define _7SEG_EN PORTC->PORT
+#define BCD_DATA PORTB
+#define _7SEG_EN PORTC
 
-#define BCD_DDR 	 DDRB->DDR
-#define _7SEG_EN_DDR DDRC->DDR
+#define BCD_DDR 	 DDRB
+#define _7SEG_EN_DDR DDRC
 
 extern void SEG_Print(unsigned char number, unsigned char DisplayNum);
 extern void SEG_Init(void);

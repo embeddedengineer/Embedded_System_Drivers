@@ -8,10 +8,19 @@
 #ifndef _TIMER0_H_
 #define _TIMER0_H_
 
-/* Timer/Counter0 Overflow */
-#define TIMER0_OVF_vect_num		11
-#define TIMER0_OVF_vect			_VECTOR(11)
-#define SIG_OVERFLOW0			_VECTOR(11)
+
+/**************************TCCR0 Registers*************************************/
+#define FOC0 	7
+#define WGM00	6
+#define COM01 	5
+#define COM00	4
+#define WGM01	3
+#define CS02 	2
+#define CS01 	1
+#define CS00 	0
+/**************************Enable TMR0 Pin*************************************/
+#define TOIE0	0
+#define OCIE0	1
 
 
 enum WAVE_FORM_GEN   //Timer/Counter0 Output Compare Match Interrupt Enable
@@ -59,8 +68,8 @@ extern void TMR0_Init(struct STimer0_Settings Configuration);
 extern void TMR0_ReadCounterValue(unsigned char* u8NumOfTicks);
 extern void TMR0_Set_Compare_Value(unsigned char u8Val);
 
-extern void TMR0_Set_TOV_Number(unsigned char u8Val);
-extern void TMR0_Get_TOV_Number(unsigned char *u8Val);
+extern void TMR0_Set_TOV_Number(int u8Val);
+extern void TMR0_Get_TOV_Number(int *u8Val);
 extern void TMR0_Set_Counter_Value(unsigned char  u8Val);
 ////SW Counter
 extern void TMR0_Get_Ticks_of_SWcounter (int *u8Val);

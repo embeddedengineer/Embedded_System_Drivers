@@ -8,14 +8,14 @@
 #ifndef _LCD_H_
 #define _LCD_H_
 
-#define	LCD_DPRT  PORTB->PORT
-#define	LCD_DDDR  DDRB->DDR
+#define	LCD_DPRT  PORTB
+#define	LCD_DDDR  DDRB
 
-#define	LCD_CPRT  PORTC->PORT
-#define	LCD_CDDR  DDRC->DDR
+#define	LCD_CPRT  PORTC
+#define	LCD_CDDR  DDRC
 
-#define	LCD_RS  PORTC->PC6
-#define	LCD_EN  PORTC->PC7
+#define	LCD_RS  6
+#define	LCD_EN  7
 
 #define _4BITS_2LINES 		  0X28
 #define DISPLAY_ON_CURSOR_OFF 0X0C
