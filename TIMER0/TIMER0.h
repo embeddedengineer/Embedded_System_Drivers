@@ -25,8 +25,16 @@
 
 enum WAVE_FORM_GEN   //Timer/Counter0 Output Compare Match Interrupt Enable
 {
+	NORMAL,
+	PWM_PHASE_CORRECT,
 	CTC,
-	NORMAL
+	FAST_PWM
+};
+
+enum PWM
+{
+	NON_INVERTED,
+	INVERTED
 };
 
 enum TOVFIE0
@@ -61,6 +69,7 @@ typedef struct STimer0_Settings
 	enum TOVFIE0 Timer0_OVFI ;
 	enum OCMIE0 Timer0_OCIE;
 	enum WAVE_FORM_GEN Timer0_Mode ;
+	enum PWM Timer0_PWM;
 	enum TMR0_PRESCALAR Timer0_PRESCALAR;
 }Timer0_Settings;
 

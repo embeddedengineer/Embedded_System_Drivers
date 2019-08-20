@@ -16,27 +16,23 @@
 
 
 
-void BlinkLedAfter3Secs(void){
-	PORTD |= (1<<5);
-	_delay_ms(500);
-	PORTD &= ~(1<<5);
-	_delay_ms(3000);
-}
 
 int main(void) {
-	DDRD |= (1<<5);
-	LCD_Init();
-	LCD_XY(0,0);
-	LCD_WriteINT(2);
-	Timer0_Settings TMR_Settings;
-	TMR_Settings.Timer0_Mode = NORMAL;
-	TMR_Settings.Timer0_PRESCALAR = PRESCALING_CLK8;
-	TMR_Settings.Timer0_OVFI = TOIE0_enable;
-	TMR0_Init(TMR_Settings);
-	TMR0_Set_Counter_Value(0);
-	callback_TMR0_Overflow_Interrupt(BlinkLedAfter3Secs);
-	sei();
+	unsigned char i = 255;
+	DDRD |= (1<<5) | (1<<4) | (1<<6) | (1<<7);
+	PORTD |= (1<<5) | (1<<4) | (1<<6) | (1<<7);
+	OCR1AH = 0;
+	OCR1AL = i;
+	TCCR1A &= ~( (1<<6) | (1<<1) );
+	TCCR1A |=  ( (1<<7) | (1<<0) );
+	TCCR1B |=  ( (1<<3) | (1<<0) | (1<<2));
+	TCCR1B &= ~( (1<<4) | (1<<1));
+
 	while(1){
+		for(i = 255; i > 0 ; i-=15){
+			OCR1AL = i;
+			_delay_ms(100);
+		}
 	}
 
 	return 1;

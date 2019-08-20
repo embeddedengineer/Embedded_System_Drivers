@@ -29,7 +29,38 @@ void TMR0_Init(struct STimer0_Settings Configuration) {
 		TCCR0 |= (1<< WGM01);
 	}
 
-	/************************Adjust prescaler************************/
+	if (Timer0_Configuration.Timer0_Mode == PWM_PHASE_CORRECT ) {
+		TCCR0 |= (1<< WGM00);
+		TCCR0 |= (1<< WGM01);
+
+		if(Timer0_Configuration.Timer0_PWM == NON_INVERTED){
+			TCCR0 &= ~(1<<COM00);
+			TCCR0 |= (1<<COM01);
+		}
+
+		else if (Timer0_Configuration.Timer0_PWM == INVERTED){
+			TCCR0 |= (1<<COM00);
+			TCCR0 |= (1<<COM01);
+		}
+	}
+
+	if (Timer0_Configuration.Timer0_Mode == FAST_PWM ) {
+		TCCR0 &= ~(1<<WGM00);
+		TCCR0 |= (1<< WGM01);
+
+		if(Timer0_Configuration.Timer0_PWM == NON_INVERTED){
+					TCCR0 &= ~(1<<COM00);
+					TCCR0 |= (1<<COM01);
+		}
+
+		else if (Timer0_Configuration.Timer0_PWM == INVERTED){
+			TCCR0 |= (1<<COM00);
+			TCCR0 |= (1<<COM01);
+		}
+	}
+
+
+	/************************Adjust prescalar************************/
 	TCCR0 = TCCR0 | Timer0_Configuration.Timer0_PRESCALAR;
 
 	/**************************TMR0 Enable/Disable********************/
