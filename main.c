@@ -14,25 +14,25 @@
 #include "avr/io.h"
 #include "avr/interrupt.h"
 
+ISR(TIMER1_OVF_vect){
+	PORTD ^= (1<<5);
+}
 
 
 
 int main(void) {
-	unsigned char i = 255;
 	DDRD |= (1<<5) | (1<<4) | (1<<6) | (1<<7);
 	PORTD |= (1<<5) | (1<<4) | (1<<6) | (1<<7);
-	OCR1AH = 0;
-	OCR1AL = i;
-	TCCR1A &= ~( (1<<6) | (1<<1) );
-	TCCR1A |=  ( (1<<7) | (1<<0) );
-	TCCR1B |=  ( (1<<3) | (1<<0) | (1<<2));
-	TCCR1B &= ~( (1<<4) | (1<<1));
+	TCCR1A = 0x00;
+	TCCR1B = 0x05;
+	TCNT1H = 3036>>8;
+	TCNT1L = 3036 & 0x00FF;
+	TIMSK |= (1<<2);
+	sei();
 
 	while(1){
-		for(i = 255; i > 0 ; i-=15){
-			OCR1AL = i;
-			_delay_ms(100);
-		}
+		PORTD ^= (1<<4);
+		_delay_ms(1000);
 	}
 
 	return 1;
